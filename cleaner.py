@@ -36,7 +36,10 @@ def get_date(filename):
     year = int(date_str[0:4])
     month = int(date_str[4:6])
     day = int(date_str[6:])
-    file_date = datetime.date(year, month, day)
+    try:
+        file_date = datetime.date(year, month, day)
+    except Exception as e:
+        logger.error(e)
     return file_date
 
 
