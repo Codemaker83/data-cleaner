@@ -30,12 +30,14 @@ limit = args.limit
 
 
 def get_date(filename):
-    t = os.path.getmtime(filename)
-    date_list = str(datetime.datetime.fromtimestamp(t)).split()[0].split("-")
-    year = int(date_list[0])
-    month = int(date_list[1])
-    day = int(date_list[2])
-    return datetime.date(year, month, day)
+    date_str = filename.split(".")[0]
+    str_list = date_str.split("-")
+    date_str = str_list[len(str_list) - 1].split("_")[0]
+    year = int(date_str[0:4])
+    month = int(date_str[4:6])
+    day = int(date_str[6:])
+    file_date = datetime.date(year, month, day)
+    return file_date
 
 
 def remove(path, limit):
