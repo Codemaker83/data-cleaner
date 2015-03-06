@@ -8,8 +8,7 @@ import datetime
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--path",
-                    help="Path of backup dir, actual dir by default",
-                    required=True)
+                    help="Path of backup dir", required=True)
 parser.add_argument("-L", "--limit",
                     help="Maximum days allowed (15 by default)",
                     default=15)
