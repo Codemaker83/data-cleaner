@@ -40,6 +40,7 @@ def get_date(filename):
         file_date = datetime.date(year, month, day)
     except Exception as e:
         logger.error(e)
+        file_date = datetime.date.today()
     return file_date
 
 
