@@ -9,7 +9,7 @@ import datetime
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--path",
                     help="Path of backup dir, actual dir by default",
-                    default=False)
+                    required=True)
 parser.add_argument("-L", "--limit",
                     help="Maximum days allowed (15 by default)",
                     default=15)
@@ -27,8 +27,6 @@ logging.basicConfig(level=level,
 logger = logging.getLogger('cleaner')
 
 path = args.path
-if not path:
-    path = os.getcwd()
 limit = args.limit
 
 
