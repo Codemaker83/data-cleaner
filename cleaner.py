@@ -59,6 +59,6 @@ def remove(path, limit):
     return path
 
 if __name__ == '__main__':
-    logger.info("Executing cleaner")
+    logger.info("Executing cleaner. Date: %s", datetime.date.today())
     remove(path, limit)
     logger.info("Backup dir cleaned")
