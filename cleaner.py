@@ -26,13 +26,14 @@ logging.basicConfig(level=level,
 logger = logging.getLogger('cleaner')
 
 path = args.path
-limit = args.limit
+limit = int(args.limit)
 
 
 def get_date(filename):
     date_str = filename.split(".")[0]
     str_list = date_str.split("-")
-    date_str = str_list[len(str_list) - 1].split("_")[0]
+    str_list = str_list[len(str_list) - 1].split("_")
+    date_str = str_list[len(str_list) - 2]
     year = int(date_str[0:4])
     month = int(date_str[4:6])
     day = int(date_str[6:])
@@ -46,12 +47,13 @@ def get_date(filename):
 
 def remove(path, limit):
     today = datetime.date.today()
+    logger.debug("%s", today)
     for dfile in os.listdir(path):
-        logger.debug("%s file found", dfile)
         filename = os.path.abspath(os.path.join(path, dfile))
         dt = today - get_date(filename)
+        logger.debug("%s file found: %s days", dfile, dt.days)
         if dt.days > limit:
-            logger.debug("%s file above limit")
+            logger.debug("%s file above limit", dfile)
             logger.info("Removing %s", dfile)
             os.remove(filename)
     return path
